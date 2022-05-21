@@ -1,13 +1,15 @@
 // require library
 const mongoose = require('mongoose');
 
-// Schema
+// Schema for Product [fields: id, name, quantity] with timeStamps
 const productSchema = new mongoose.Schema({
     name:{
         type: String,
+        required: true
     } ,
     quantity:{
         type: Number,
+        required: true
     }
 },{timestamps:true})
 

@@ -12,8 +12,8 @@ router.post('/products/create', productController.create);
 // API to delete products
 router.delete('/products/:id', productController.delete);
 
-// // API to update quantity of a product (can be incremented or decremented)
-router.patch('/products/:id/update_quantity/', productController.update);
+// API to update quantity of a product
+router.post('/products/:id/update_quantity/', productController.update);
 
-
+// Exporting router
 module.exports = router;

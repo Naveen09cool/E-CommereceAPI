@@ -1,5 +1,6 @@
 const Product = require('../models/product');
 
+// Fetch List of products
 module.exports.list = async function(req, res){
     try{
         let product = await Product.find()
@@ -15,6 +16,7 @@ module.exports.list = async function(req, res){
     } 
 }
 
+// Create Product
 module.exports.create = async function(req, res){
     try{
         let product = new Product({
@@ -32,7 +34,7 @@ module.exports.create = async function(req, res){
     } 
 }
 
-
+// Delete Product
 module.exports.delete = async function(req, res){
     try{
         let product= await Product.findById(req.params.id);
@@ -46,10 +48,11 @@ module.exports.delete = async function(req, res){
     } 
 }
 
-
+// Update quantity
 module.exports.update = async function(req, res){
     try{
         let product= await Product.findById(req.params.id);
+        // Here using req.query to update quantity [NOTICE: using number instead of quantity for query]
             product.quantity = req.query.number
             await product.save() 
             return res.status(200).json({
@@ -61,5 +64,6 @@ module.exports.update = async function(req, res){
         return res.send('Error in updating quantity of the product:::'+ err);
     } 
 }
+
 
 
