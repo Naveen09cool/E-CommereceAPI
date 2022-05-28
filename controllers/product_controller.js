@@ -25,8 +25,10 @@ module.exports.create = async function(req, res){
         });
         await product.save() 
         return res.status(200).json({
-            message: "Product created",
-            products: product
+            data:{
+                message: "Product created",
+                products: product
+            }
         })
     }catch(err){
         console.log('Error in creating product',err);
@@ -40,7 +42,9 @@ module.exports.delete = async function(req, res){
         let product= await Product.findById(req.params.id);
             await product.remove();
             return res.status(200).json({
-                message: "Product removed from list",
+                data:{
+                    message: "Product removed from list",
+                }
             })
     }catch(err){
         console.log('Error in removing product',err);
@@ -52,13 +56,24 @@ module.exports.delete = async function(req, res){
 module.exports.update = async function(req, res){
     try{
         let product= await Product.findById(req.params.id);
-        // Here using req.query to update quantity [NOTICE: using number instead of quantity for query]
-            product.quantity = req.query.number
+        // Here using req.query to update quantity [NOTICE: using number for query]
+        let num = parseInt(req.query.number);
+        if(product.quantity + num < 0){
+            return res.status(200).json({
+                data:{
+                    message: "Try Again! Product quantity could not be less then 0",
+                }
+            })
+        }else{
+            product.quantity = product.quantity + num
             await product.save() 
             return res.status(200).json({
-                message: "Product Quantity updated successfully",
-                products: product
+                data:{
+                    message: "Product Quantity updated successfully",
+                    products: product
+                }
             })
+        }
     }catch(err){
         console.log('Error in updating quantity of the product',err);
         return res.send('Error in updating quantity of the product:::'+ err);
