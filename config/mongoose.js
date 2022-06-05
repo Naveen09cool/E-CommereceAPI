@@ -1,7 +1,9 @@
 // require the library
 const mongoose = require('mongoose');
+
+require('dotenv').config();
 // connecting database
-mongoose.connect('mongodb+srv://cluster0.4j6plba.mongodb.net/ecommerce_db');
+mongoose.connect(process.env.MONGO_CONNECT);
 // aquire the connection
 const db = mongoose.connection;
 //on error
