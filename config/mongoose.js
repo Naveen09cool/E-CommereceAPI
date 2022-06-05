@@ -1,7 +1,7 @@
 // require the library
 const mongoose = require('mongoose');
 // connecting database
-mongoose.connect('mongodb://localhost/ecommerce_db');
+mongoose.connect('mongodb+srv://cluster0.4j6plba.mongodb.net/ecommerce_db');
 // aquire the connection
 const db = mongoose.connection;
 //on error
