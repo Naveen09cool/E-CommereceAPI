@@ -80,5 +80,11 @@ module.exports.update = async function(req, res){
     } 
 }
 
-
-
+module.exports.home = async function(req, res){
+    try {
+        return res.send('Hello Admin')
+    } catch (error) {
+        console.log('Error at home',err);
+        return res.send('Error at home page:'+ err);
+    }
+}

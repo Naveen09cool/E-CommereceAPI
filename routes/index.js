@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/product_controller');
 
-
+// For Home
+router.get('/', productController.home);
 // API to list products
 router.get('/products', productController.list);
 
